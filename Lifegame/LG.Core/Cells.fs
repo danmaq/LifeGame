@@ -1,5 +1,7 @@
 ﻿module Cells
 
+open System
+
 ///<summary>セルの状態。</summary>
 type Cell =
     {
@@ -25,6 +27,11 @@ let private neighborsOffset =
         |> Seq.concat
         |> Seq.filter (fun xy -> xy <> (0, 0))
         |> Seq.toArray
+
+///<summary>ランダムで真偽を返す関数。</summary>
+let private random =
+    let rnd = new Random()
+    fun () -> rnd.Next 10 >= 5
 
 ///<summary>セル一覧の状態。</summary>
 type Cells =
