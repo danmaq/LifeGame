@@ -61,8 +61,7 @@ type Cells =
             let (bx, by) = i |> Cells.toPos width
             neighborsOffset
                 |> Array.toSeq
-                |> Seq.map (fun (x, y) -> Cells.toIndex width x y)
-                |> Seq.map (fun i -> cells.[i])
+                |> Seq.map (fun (x, y) -> cells.[Cells.toIndex width x y])
                 |> Seq.toArray
         {
             width = width
