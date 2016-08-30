@@ -10,6 +10,7 @@ type Cell =
         ///<summary>隣接セルへの参照。</summary>
         neighbors: Cell []
     }
+    static member init = { live = false; neighbors = [||] }
     ///<summary>セルの状態に対する、次の生存状態。</summary>
     static member next cell =
         let count =
@@ -54,9 +55,7 @@ type Cells =
             | None -> None
     ///<summary>列数・行数に対応するセル情報一覧。</summary>
     static member create (width, height) =
-        let cells =
-            { live = false; neighbors = [||] }
-                |> Array.create (width * height)
+        let cells = Cell.init |> Array.create (width * height)
         let neighborsIndex i =
             let (bx, by) = i |> Cells.toPos width
             neighborsOffset
